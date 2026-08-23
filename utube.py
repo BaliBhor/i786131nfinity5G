@@ -40,9 +40,9 @@ def extract_video_id(url):
 def find_ytdlp():
     """Find local yt-dlp binary or standard environment execution path"""
     standard_paths = [
-        "yt-dlp", # Default binary command inside GitHub Ubuntu runner env
-        "/usr/bin/yt-dlp",
-        "/usr/local/bin/yt-dlp"
+        "/usr/local/bin/yt-dlp", # Absolute path matching installation step
+        "yt-dlp", 
+        "/usr/bin/yt-dlp"
     ]
     for path in standard_paths:
         try:
