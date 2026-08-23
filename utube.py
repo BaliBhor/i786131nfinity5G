@@ -7,9 +7,9 @@ from urllib.parse import unquote
 
 # Add your target YouTube Live or Video URLs here
 YOUTUBE_CHANNELS = [
-    {"name": "Live Channel 1", "url": "https://youtube.com"},
-    {"name": "Live Channel 2", "url": "https://youtube.com"},
-    {"name": "Live Channel 3", "url": "https://youtu.be"}
+    {"name": "Live Harimandir Sahib", "url": "https://www.youtube.com/watch?v=Zdw8mPolGYw"},
+    {"name": "Live Channel 2", "url": "https://www.youtube.com/watch?v=Zdw8mPolGYw"},
+    {"name": "Live Channel 3", "url": "https://www.youtube.com/watch?v=Zdw8mPolGYw"}
 ]
 
 OUTPUT_FILE = "youtube_channels.m3u"
