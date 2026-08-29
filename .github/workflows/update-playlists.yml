@@ -22,7 +22,7 @@ jobs:
       - name: Download Xumo Playlist and EPG Files
         run: |
           # Explicitly create the playlists directory first
-          mkdir -p playlists
+          mkdir -p secret8
           
           # Download the M3U playlist
           curl -L "https://raw.githubusercontent.com/BuddyChewChew/xumo-playlist-generator/refs/heads/main/playlists/xumo_playlist.m3u" -o playlists/xumo_playlist.m3u
