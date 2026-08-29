@@ -1,0 +1,47 @@
+name: Update Xumo Playlists
+
+on:
+  schedule:
+    - cron: '0 */6 * * *' # Runs every 6 hours automatically
+  workflow_dispatch: # Allows you to run it manually from the Actions tab
+
+jobs:
+  update-files:
+    runs-on: ubuntu-latest
+    
+    # Give the built-in GITHUB_TOKEN permission to write back to the repo
+    permissions:
+      contents: write
+
+    steps:
+      # 1. Checkout the repository itself
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Download the external M3U and EPG files directly into the playlists folder
+      - name: Download Xumo Playlist and EPG Files
+        run: |
+          mkdir -p playlists
+          
+          # Download the M3U playlist
+          curl -L "https://raw.githubusercontent.com/BuddyChewChew/xumo-playlist-generator/refs/heads/main/playlists/xumo_playlist.m3u" -o playlists/xumo_playlist.m3u
+          
+          # Download the EPG gz file
+          curl -L "https://raw.githubusercontent.com/BuddyChewChew/xumo-playlist-generator/main/playlists/xumo_epg.xml.gz" -o playlists/xumo_epg.xml.gz
+
+      # 3. Commit and push the changes back using the built-in bot token
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add playlists/
+          
+          git status
+          
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to update (files are already up to date)."
+          else
+            git commit -m "Auto-update Xumo playlists and EPG from upstream"
+            git push
+          fi
