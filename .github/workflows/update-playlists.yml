@@ -22,7 +22,7 @@ jobs:
       - name: Download Xumo Playlist and EPG Files
         run: |
           # Explicitly create the playlists directory first
-          mkdir -p secret8
+          mkdir -p playlists
           
           # Download the M3U playlist
           curl -L "https://raw.githubusercontent.com/BuddyChewChew/xumo-playlist-generator/refs/heads/main/playlists/xumo_playlist.m3u" -o playlists/xumo_playlist.m3u
@@ -36,7 +36,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-          git add secret8/
+          git add playlists/
           
           git status
           
