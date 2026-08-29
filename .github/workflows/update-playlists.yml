@@ -18,10 +18,11 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      # 2. Download the external M3U and EPG files directly into the playlists folder
+      # 2. Create directory and download the files
       - name: Download Xumo Playlist and EPG Files
         run: |
-          mkdir -p secret8
+          # Explicitly create the playlists directory first
+          mkdir -p playlists
           
           # Download the M3U playlist
           curl -L "https://raw.githubusercontent.com/BuddyChewChew/xumo-playlist-generator/refs/heads/main/playlists/xumo_playlist.m3u" -o playlists/xumo_playlist.m3u
